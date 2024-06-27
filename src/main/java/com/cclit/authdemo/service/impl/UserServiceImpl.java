@@ -6,12 +6,14 @@ import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.DigestUtils;
 
 import com.cclit.authdemo.bean.User;
 import com.cclit.authdemo.dao.UserDao;
 import com.cclit.authdemo.dto.UserLoginReq;
 import com.cclit.authdemo.exception.InvalidInputException;
 import com.cclit.authdemo.service.UserService;
+import com.cclit.authdemo.util.JwtGenerator;
 
 
 /**
@@ -39,7 +41,10 @@ public class UserServiceImpl implements UserService {
 		User user = new User();
 		user.setId(UUID.randomUUID().toString());
 		user.setEmail(userLoginReq.getEmail());
-		user.setPwd(userLoginReq.getPassword());
+		
+		//// password needed to be encrypted before save to db table
+		String hashedPwd = DigestUtils.md5DigestAsHex(userLoginReq.getPassword().getBytes());
+		user.setPwd(hashedPwd);
 		
 		return userDao.save(user);
 	}

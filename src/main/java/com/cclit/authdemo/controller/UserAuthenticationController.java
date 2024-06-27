@@ -18,6 +18,7 @@ import com.cclit.authdemo.dto.UserLoginReq;
 import com.cclit.authdemo.dto.UserLoginRes;
 import com.cclit.authdemo.exception.InvalidInputException;
 import com.cclit.authdemo.service.UserService;
+import com.cclit.authdemo.util.JwtGenerator;
 
 import jakarta.validation.Valid;
 
@@ -32,6 +33,9 @@ public class UserAuthenticationController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private JwtGenerator jwtGenerator;
+	
 	
 	@PostMapping("/signup")
 	public ResponseEntity<UserLoginRes> register(@RequestBody @Valid UserLoginReq userLoginReq, BindingResult result){
@@ -45,6 +49,7 @@ public class UserAuthenticationController {
 		
 		userLoginRes.setMessage("Resister Suscess!");
 		userLoginRes.setUser(user);
+		userLoginRes.setToken(jwtGenerator.generateJwtToken(user));
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(userLoginRes);
 	}
@@ -55,6 +60,7 @@ public class UserAuthenticationController {
 		
 		return null;
 	}
+	
 	
 	
 	private void inputInfoValidationCheck(BindingResult result) {

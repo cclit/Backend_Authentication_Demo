@@ -16,8 +16,6 @@ public class UserLoginReq {
 	@Email(message = "Invalid email.")
 	private String email;
 	
-//	@NotBlank
-//	@Min(value = 6, message = "Invalid password. Must be at least 6 characters long.")
 	@Pattern(regexp = ".{6,}", message = "Invalid password. Must be at least 6 characters long.")
 	private String password;
 	
