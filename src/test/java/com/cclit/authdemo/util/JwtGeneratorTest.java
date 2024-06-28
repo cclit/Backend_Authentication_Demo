@@ -25,7 +25,7 @@ public class JwtGeneratorTest {
 	@Test
 	public void jwtPropTest() {
 		
-		assertEquals("AlohomoraIsASpellUsedToOpenDoors", secretKey);
+		assertEquals("SuperSecretForThisAuthenticationDemoApp", secretKey);
 		assertEquals(1, expiredTime);
 		
 	}

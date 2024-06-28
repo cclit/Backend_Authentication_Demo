@@ -45,20 +45,22 @@ public class UserAuthenticationController {
 		
 		User user = userService.register(userLoginReq);
 		
-		UserLoginRes userLoginRes = new UserLoginRes();
-		
-		userLoginRes.setMessage("Resister Suscess!");
-		userLoginRes.setUser(user);
-		userLoginRes.setToken(jwtGenerator.generateJwtToken(user));
+		UserLoginRes userLoginRes = getLoginRes("Resister Suscess!", user);
 		
 		return ResponseEntity.status(HttpStatus.CREATED).body(userLoginRes);
 	}
 	
 	
 	@PostMapping("/login")
-	public ResponseEntity<UserLoginRes> login(UserLoginReq userLoginReq){
+	public ResponseEntity<UserLoginRes> login(@RequestBody @Valid UserLoginReq userLoginReq, BindingResult result){
 		
-		return null;
+		inputInfoValidationCheck(result);
+		
+		User user = userService.login(userLoginReq);
+		
+		UserLoginRes userLoginRes = getLoginRes("Login Suscess!", user);
+				
+		return ResponseEntity.status(HttpStatus.OK).body(userLoginRes);
 	}
 	
 	
@@ -78,6 +80,18 @@ public class UserAuthenticationController {
 			throw new InvalidInputException("User signup failed due to validation errors.", errorMsgMap);
 		}
 		
+	}
+	
+	
+	private UserLoginRes getLoginRes(String message, User user) {
+		
+		UserLoginRes userLoginRes = new UserLoginRes();
+		
+		userLoginRes.setMessage(message);
+		userLoginRes.setUser(user);
+		userLoginRes.setToken(jwtGenerator.generateJwtToken(user));
+		
+		return userLoginRes;
 	}
 	
 

@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
@@ -12,6 +14,7 @@ import com.cclit.authdemo.bean.User;
 import com.cclit.authdemo.dao.UserDao;
 import com.cclit.authdemo.dto.UserLoginReq;
 import com.cclit.authdemo.exception.InvalidInputException;
+import com.cclit.authdemo.exception.UserNotFoundException;
 import com.cclit.authdemo.service.UserService;
 import com.cclit.authdemo.util.JwtGenerator;
 
@@ -44,9 +47,28 @@ public class UserServiceImpl implements UserService {
 		
 		//// password needed to be encrypted before save to db table
 		String hashedPwd = DigestUtils.md5DigestAsHex(userLoginReq.getPassword().getBytes());
-		user.setPwd(hashedPwd);
+		user.setPassword(hashedPwd);
 		
 		return userDao.save(user);
+	}
+
+	@Override
+	public User login(UserLoginReq userLoginReq) {
+		// 1. check if the user existed
+		User user = userDao.findUserByEmail(userLoginReq.getEmail());
+		if(user == null) {
+			throw new UserNotFoundException("Authentication failed. Invalid email entered.");
+		}
+		
+		// 2. check pwd
+		String hashInputPwd = DigestUtils.md5DigestAsHex(userLoginReq.getPassword().getBytes());
+		if(!hashInputPwd.equals(user.getPassword())) {
+			Map<String, String> errorMap = new HashMap<>();
+			errorMap.put("credentials", "Invalid password entered.");
+			throw new InvalidInputException("Invalid credentials.", errorMap);
+		}
+		
+		return user;
 	}
 
 	

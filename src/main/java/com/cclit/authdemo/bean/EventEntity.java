@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
  *  @author GalenLin
  */
 @Entity
-@Table(name = "EVENT")
+@Table(name = "EVENTS")
 public class EventEntity {
 	
 	/*

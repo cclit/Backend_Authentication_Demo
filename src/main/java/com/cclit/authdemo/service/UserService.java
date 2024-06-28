@@ -12,5 +12,7 @@ public interface UserService {
 	
 	
 	public User register(UserLoginReq userLoginReq);
+	
+	public User login(UserLoginReq userLoginReq);
 
 }
