@@ -7,7 +7,6 @@ import com.cclit.authdemo.bean.User;
  *  
  *  @author GalenLin
  */
-
 public interface JwtGenerator {
 
 	public String generateJwtToken(User user);

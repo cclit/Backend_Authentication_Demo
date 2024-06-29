@@ -14,6 +14,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 
+/**
+ *  JWT Generator interface implement class
+ *  
+ *  @author GalenLin
+ */
 @Component
 public class JwtGeneratorImpl implements JwtGenerator {
 
