@@ -9,6 +9,6 @@ import com.cclit.authdemo.bean.EventEntity;
  *  
  *  @author GalenLin
  */
-public interface EventDato extends JpaRepository<EventEntity, String> {
+public interface EventDao extends JpaRepository<EventEntity, String> {
 
 }

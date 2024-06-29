@@ -1,5 +1,11 @@
 package com.cclit.authdemo.bean;
 
+import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -34,7 +40,9 @@ public class EventEntity {
 	 * create date : stored as pattern : yyyy-mm-dd
 	 * 
 	 * */
-	@Column(name = "DATE", length = 20)
+//	@JsonFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "DATE")
+//	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private String date;
 	
 	@Column(name = "DESCRIPTION", length = 400)

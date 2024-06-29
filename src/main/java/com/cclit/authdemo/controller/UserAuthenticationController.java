@@ -75,7 +75,7 @@ public class UserAuthenticationController {
 			Map<String, String> errorMsgMap = new HashMap<>();
 			
 			for(FieldError error : fieldErrors) {
-				System.out.println(error.getField() + " : " + error.getDefaultMessage());
+//				System.out.println(error.getField() + " : " + error.getDefaultMessage());
 				errorMsgMap.put(error.getField(), error.getDefaultMessage());
 			}
 			
