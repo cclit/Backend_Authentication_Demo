@@ -29,7 +29,6 @@ import jakarta.validation.Valid;
  *  @author GalenLin
  */
 @RestController
-@CrossOrigin(value = "http://localhost:3000")
 public class UserAuthenticationController {
 	
 	@Autowired

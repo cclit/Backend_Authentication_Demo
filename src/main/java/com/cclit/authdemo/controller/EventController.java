@@ -31,7 +31,6 @@ import com.cclit.authdemo.service.EventService;
 import jakarta.validation.Valid;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000")
 public class EventController {
 	
 	@Autowired
