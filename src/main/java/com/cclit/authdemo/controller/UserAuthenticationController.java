@@ -19,7 +19,7 @@ import com.cclit.authdemo.dto.UserLoginReq;
 import com.cclit.authdemo.dto.UserLoginRes;
 import com.cclit.authdemo.exception.InvalidInputException;
 import com.cclit.authdemo.service.UserService;
-import com.cclit.authdemo.util.JwtGenerator;
+import com.cclit.authdemo.util.JwtUtil;
 
 import jakarta.validation.Valid;
 
@@ -36,7 +36,7 @@ public class UserAuthenticationController {
 	private UserService userService;
 	
 	@Autowired
-	private JwtGenerator jwtGenerator;
+	private JwtUtil jwtGenerator;
 	
 	
 	@PostMapping("/signup")

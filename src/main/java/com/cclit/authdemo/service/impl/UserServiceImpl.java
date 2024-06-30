@@ -16,7 +16,7 @@ import com.cclit.authdemo.dto.UserLoginReq;
 import com.cclit.authdemo.exception.InvalidInputException;
 import com.cclit.authdemo.exception.UserNotFoundException;
 import com.cclit.authdemo.service.UserService;
-import com.cclit.authdemo.util.JwtGenerator;
+import com.cclit.authdemo.util.JwtUtil;
 
 
 /**
@@ -71,7 +71,9 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	
-	
+	@Override
+	public User findUserByEmail(String email) {
+		return userDao.findUserByEmail(email);
+	}
 	
 }

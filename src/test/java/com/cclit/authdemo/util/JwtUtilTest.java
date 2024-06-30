@@ -11,10 +11,10 @@ import org.springframework.boot.test.context.SpringBootTest;
 import com.cclit.authdemo.bean.User;
 
 @SpringBootTest
-public class JwtGeneratorTest {
+public class JwtUtilTest {
 	
 	@Autowired
-	private JwtGenerator jwtGenerator;
+	private JwtUtil jwtGenerator;
 	
 	@Value("${authdemo.jwt.key}")
 	private String secretKey;

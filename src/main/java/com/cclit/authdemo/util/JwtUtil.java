@@ -3,11 +3,14 @@ package com.cclit.authdemo.util;
 import com.cclit.authdemo.bean.User;
 
 /**
- *  JWT Generator interface
+ *  JWT Util interface
  *  
  *  @author GalenLin
  */
-public interface JwtGenerator {
+public interface JwtUtil {
 
 	public String generateJwtToken(User user);
+	
+	public String parseJwtToken(String jwtToken);
+	
 }

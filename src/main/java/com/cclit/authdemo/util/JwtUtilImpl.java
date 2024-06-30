@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import com.cclit.authdemo.bean.User;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -20,7 +21,7 @@ import io.jsonwebtoken.security.Keys;
  *  @author GalenLin
  */
 @Component
-public class JwtGeneratorImpl implements JwtGenerator {
+public class JwtUtilImpl implements JwtUtil {
 
 	@Value("${authdemo.jwt.key}")
 	private String secretKey;
@@ -44,6 +45,20 @@ public class JwtGeneratorImpl implements JwtGenerator {
 				   .setClaims(claims)
 				   .signWith(key)
 				   .compact();
+	}
+
+	@Override
+	public String parseJwtToken(String jwtToken) {
+		
+		Key key = Keys.hmacShaKeyFor(secretKey.getBytes());
+		
+		JwtParser parser = Jwts.parserBuilder().setSigningKey(key).build();
+		
+		Claims claims = parser.parseClaimsJws(jwtToken).getBody();
+		
+		String userEmail  = claims.getSubject();
+		
+		return userEmail;
 	}
 
 }
