@@ -1,4 +1,4 @@
-# Backend_Authentication_Demo
+# Backend_Authentication_Demo (Spring Boot project)
 本 project 為實作登入與活動 (event) 之 CRUD 之簡易後端系統，旨在前後端分離中，與前端系統對接之技術參考 :
 1. 以 JWT token 實現身分驗證
 2. 以 Spring framwork 之 Interceptor 功能攔截特定功能請求並進行會員驗證 (Authentication)
