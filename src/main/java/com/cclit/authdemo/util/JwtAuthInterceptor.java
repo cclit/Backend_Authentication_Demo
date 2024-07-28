@@ -1,7 +1,5 @@
 package com.cclit.authdemo.util;
 
-import java.util.Enumeration;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -44,13 +42,6 @@ public class JwtAuthInterceptor implements HandlerInterceptor {
 		// JWT token check
 		String authHeader = request.getHeader("Authorization");
 		
-		// test 
-		Enumeration<String> headerNames = request.getHeaderNames();
-		while (headerNames.hasMoreElements()) {
-		    String headerName = headerNames.nextElement();
-		    System.out.println(headerName + ": " + request.getHeader(headerName));
-		}
-		// test
 		
 		if(authHeader != null) {
 			

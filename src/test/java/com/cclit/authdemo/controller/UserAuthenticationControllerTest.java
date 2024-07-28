@@ -31,7 +31,6 @@ public class UserAuthenticationControllerTest {
 	/*
 	 * Register test
 	 */
-	
 	@Test
 	public void registerSucess() throws Exception {
 		

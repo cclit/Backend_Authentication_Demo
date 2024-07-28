@@ -30,6 +30,11 @@ import com.cclit.authdemo.service.EventService;
 
 import jakarta.validation.Valid;
 
+/**
+ *  Event controller
+ *  
+ *  @author GalenLin
+ */
 @RestController
 public class EventController {
 	
